@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusDesk | Study & Productivity</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-icon">✦</span><span>FocusDesk</span></div>
+    <p class="sidebar-label">WORKSPACE</p>
+    <nav class="nav">
+      <button class="nav-link active" data-view="dashboard"><span>▦</span> Dashboard</button>
+      <button class="nav-link" data-view="tasks"><span>✓</span> My Tasks</button>
+      <button class="nav-link" data-view="focus"><span>◷</span> Focus Timer</button>
+      <button class="nav-link" data-view="notes"><span>▤</span> Quick Notes</button>
+      <button class="nav-link" data-view="study"><span>▣</span> Study Reviewer</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="mini-tip">
+        <span class="tip-icon">☀</span>
+        <strong>Small steps count.</strong>
+        <p>Focus on one task at a time. Progress beats perfection.</p>
+      </div>
+      <p class="sidebar-foot">YOUR PERSONAL STUDY SPACE</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow" id="today-label">YOUR WORKSPACE</p>
+        <h1 id="page-title">Good morning. Let's focus.</h1>
+        <p class="subheading" id="page-subtitle">Make today count, one task at a time.</p>
+      </div>
+      <button class="primary-btn" id="header-add-task">＋ Add task</button>
+    </header>
+
+    <section class="view active" id="dashboard-view">
+      <div class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow light">TODAY'S INTENTION</p>
+          <h2>Make room for<br>your best work.</h2>
+          <p>Pick a priority, start a focus session, and build momentum.</p>
+          <button class="hero-btn" data-go="focus">Start focusing <span>→</span></button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-circle circle-one"></div><div class="art-circle circle-two"></div>
+          <div class="art-card"><span>✦</span><b>FOCUS</b><small>one thing at a time</small></div>
+          <div class="art-star star-one">✳</div><div class="art-star star-two">✦</div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span>Tasks completed</span><span class="stat-icon lavender">✓</span></div><strong id="completed-stat">0</strong><small>Keep building your streak</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Tasks remaining</span><span class="stat-icon peach">◎</span></div><strong id="remaining-stat">0</strong><small>One step at a time</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Focus sessions</span><span class="stat-icon mint">◷</span></div><strong id="sessions-stat">0</strong><small>Sessions completed today</small></article>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">YOUR PRIORITIES</p><h3>Today's tasks</h3></div><button class="text-btn" data-go="tasks">View all →</button></div>
+          <div id="dashboard-task-list" class="task-list"></div>
+          <button class="add-inline" id="inline-add-task">＋ Add a task</button>
+        </section>
+        <section class="panel focus-panel">
+          <div class="panel-heading"><div><p class="eyebrow">TAKE A BREATHER</p><h3>Focus timer</h3></div><span class="pill">Pomodoro</span></div>
+          <div class="mini-timer">
+            <div class="timer-ring"><div><strong id="mini-timer-display">25:00</strong><small>MINUTES</small></div></div>
+          </div>
+          <p class="timer-caption">A short, focused session can help you get started.</p>
+          <button class="primary-btn full-btn" data-go="focus">Open focus timer</button>
+        </section>
+      </div>
+      <section class="panel quote-panel"><span class="quote-mark">“</span><div><h3>Consistency over intensity.</h3><p>You don't have to finish everything today. Just make meaningful progress.</p></div><span class="quote-spark">✦</span></section>
+    </section>
+
+    <section class="view" id="tasks-view">
+      <div class="section-intro"><div><p class="eyebrow">PLAN YOUR DAY</p><h2>My tasks</h2><p>Write it down, then work through it at your own pace.</p></div></div>
+      <form id="task-form" class="task-form">
+        <input id="task-input" type="text" placeholder="What do you need to get done?" maxlength="120" required>
+        <select id="task-priority" aria-label="Task priority"><option value="medium">Medium priority</option><option value="high">High priority</option><option value="low">Low priority</option></select>
+        <button class="primary-btn" type="submit">＋ Add task</button>
+      </form>
+      <div class="task-filters">
+        <button class="filter-btn active" data-filter="all">All tasks</button>
+        <button class="filter-btn" data-filter="active">To do</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+      <section class="panel"><div id="all-task-list" class="task-list"></div><div id="empty-tasks" class="empty-state"><span>✦</span><h3>Nothing on your list yet</h3><p>Add a task above to get started.</p></div></section>
+    </section>
+
+    <section class="view" id="focus-view">
+      <div class="section-intro"><div><p class="eyebrow">ONE THING AT A TIME</p><h2>Focus timer</h2><p>Try 25 minutes of focus, followed by a 5-minute break.</p></div></div>
+      <section class="timer-main panel">
+        <div class="timer-tabs"><button class="timer-tab active" data-minutes="25" data-mode="Focus">Focus</button><button class="timer-tab" data-minutes="5" data-mode="Short break">Short break</button><button class="timer-tab" data-minutes="15" data-mode="Long break">Long break</button></div>
+        <p class="timer-mode" id="timer-mode">TIME TO FOCUS</p>
+        <div class="big-timer" id="big-timer-display">25:00</div>
+        <div class="timer-progress"><div id="timer-progress-bar"></div></div>
+        <div class="timer-controls"><button class="primary-btn" id="timer-start">▶ Start</button><button class="secondary-btn" id="timer-reset">↺ Reset</button></div>
+        <p class="timer-hint" id="timer-hint">Put away distractions and give one task your attention.</p>
+      </section>
+      <div class="focus-note"><span>✦</span><div><strong>Quick tip</strong><p>Choose one clear task before starting. If another thought pops up, write it down and return to what you were doing.</p></div></div>
+    </section>
+
+    <section class="view" id="notes-view">
+      <div class="section-intro"><div><p class="eyebrow">CLEAR YOUR MIND</p><h2>Quick notes</h2><p>Capture ideas, reminders, and things to revisit later.</p></div></div>
+      <section class="panel notes-panel">
+        <label for="notes-area">YOUR NOTES</label>
+        <textarea id="notes-area" placeholder="Type your notes here...&#10;&#10;Ideas, reminders, topics to review, questions to ask..."></textarea>
+        <div class="notes-footer"><span id="notes-status">Notes save automatically on this browser.</span><button class="secondary-btn" id="clear-notes">Clear notes</button></div>
+      </section>
+    </section>
+
+    <section class="view" id="study-view">
+      <div class="section-intro"><div><p class="eyebrow">IT 312 MIDTERM</p><h2>Study reviewer</h2><p>Use this checklist to organize your review for Chapters 5–10.</p></div></div>
+      <div class="study-callout"><span>▣</span><div><strong>Study strategy</strong><p>Read one topic, explain it in your own words, then test yourself without looking at your notes.</p></div></div>
+      <div class="chapter-grid">
+        <article class="chapter-card"><div class="chapter-number">05</div><div><p class="eyebrow">CHAPTER 5</p><h3>System Analysis</h3><p>Understand the purpose of system analysis and how it helps define system needs.</p></div><label class="study-check"><input type="checkbox" data-study="5"><span>Reviewed</span></label></article>
+        <article class="chapter-card"><div class="chapter-number">06</div><div><p class="eyebrow">CHAPTER 6</p><h3>Fact-Finding & Requirements</h3><p>Review interviews, observation, questionnaires, and requirements discovery.</p><label class="study-check"><input type="checkbox" data-study="6"><span>Reviewed</span></label></div></article>
+        <article class="chapter-card"><div class="chapter-number">07</div><div><p class="eyebrow">CHAPTER 7</p><h3>Use Cases & Diagrams</h3><p>Practice actors, use cases, system boundaries, and associations.</p><label class="study-check"><input type="checkbox" data-study="7"><span>Reviewed</span></label></div></article>
+        <article class="chapter-card"><div class="chapter-number">08</div><div><p class="eyebrow">CHAPTER 8</p><h3>Data Modeling</h3><p>Review entities, attributes, relationships, and how data is organized.</p><label class="study-check"><input type="checkbox" data-study="8"><span>Reviewed</span></label></div></article>
+        <article class="chapter-card"><div class="chapter-number">09</div><div><p class="eyebrow">CHAPTER 9</p><h3>Process Modeling & DFDs</h3><p>Review process flow, context diagrams, Level 0 DFDs, and data movement.</p><label class="study-check"><input type="checkbox" data-study="9"><span>Reviewed</span></label></div></article>
+        <article class="chapter-card"><div class="chapter-number">10</div><div><p class="eyebrow">CHAPTER 10</p><h3>Object-Oriented Modeling</h3><p>Review objects, classes, attributes, operations, and relationships.</p><label class="study-check"><input type="checkbox" data-study="10"><span>Reviewed</span></label></div></article>
+      </div>
+      <section class="panel design-review">
+        <div class="panel-heading"><div><p class="eyebrow">ADDITIONAL REVIEW TOPICS</p><h3>System design & software engineering</h3></div></div>
+        <div class="review-tags"><span>SDLC phases</span><span>System design requirements</span><span>Architecture vs. design</span><span>Technology trade-offs</span><span>Technical reviews</span><span>Verification & validation</span><span>Requirements Traceability Matrix</span><span>Functional / non-functional requirements</span><span>FAI / FCA / PCA</span><span>Fishbone diagram</span></div>
+      </section>
+    </section>
+
+    <footer class="footer">Made for steady progress <span>✦</span> Your tasks and notes stay in this browser.</footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
